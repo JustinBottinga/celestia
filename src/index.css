@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-Inter: "Inter", system-ui;
+  --weight: 400;
+  --bg: #140f19;
+}
+
+body {
+  font-family: var(--font-Inter);
+  font-optical-sizing: auto;
+  font-weight: var(--weight);
+  font-style: normal;
+  background-color: var(--bg);
+}
