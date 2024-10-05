@@ -1,0 +1,35 @@
+:root {
+    --background: #140F19;
+    --purple950: #3B0764;
+    --purple900: #581C87;
+    --purple800: #6B21A8;
+    --purple700: #7E22CE;
+    --purple600: #9333EA;
+    --purple500: #A855F7;
+    --purple400: #C084FC;
+    --purple300: #D8B4FE;
+    --purple200: #E9D5FF;
+    --purple100: #F3E8FF;
+    --purple50: #FAF5FF;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--purple950);
+    border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--purple800);
+}
