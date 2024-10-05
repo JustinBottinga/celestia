@@ -15,3 +15,9 @@ body {
   font-style: normal;
   background-color: var(--bg);
 }
+
+#root {
+    /* temp maybe, vindt t nog niet heel leuk */
+    background-image: url("./assets/blur.png");
+    background-repeat: no-repeat;
+}
