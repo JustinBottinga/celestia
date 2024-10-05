@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "./TextField.css";
+import "./Chat.css";
+import Navigation from "../Navigation/Navigation";
 
-function TextField(): JSX.Element {
+function Chat(): JSX.Element {
   const [formData, setFormData] = useState({
     name: "",
   });
@@ -51,12 +52,13 @@ function TextField(): JSX.Element {
 
   return (
     <>
+      <Navigation />
       <div className="w-full flex justify-center h-screen p-4">
         <div
           className="w-4/5 bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5
-                      flex justify-between items-center flex-col h-full box-border p-4"
+                      flex justify-between items-center flex-col min-h-full overflow-y-scroll box-border p-4"
         >
-          <div className="messages w-full flex flex-col place-items-end gap-4 ">
+          <div className="messages w-full pb-4 flex flex-col place-items-end gap-4 ">
             {messages.map((messageObj, index) => (
               <div
                 key={index}
@@ -112,4 +114,4 @@ function TextField(): JSX.Element {
   );
 }
 
-export default TextField;
+export default Chat;
