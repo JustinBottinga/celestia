@@ -12,6 +12,7 @@ header {
 
 
 .bg-grid {
+  z-index: 8;
   position: absolute;
   height: 100%;
   top: 0;
@@ -26,4 +27,9 @@ header {
   background-size: 35px 35px; /* Define size of grid cells */
   background-color: transparent; /* Optional background color */
   background-position: center;
+}
+
+.bg-grid + div {
+  z-index: 9;
+  position: relative;
 }
