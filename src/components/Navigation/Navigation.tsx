@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import "./Navigation.css";
 import { HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 function Navigation() {
   return (
@@ -19,12 +20,12 @@ function Navigation() {
           >
             {<HomeIcon className="size-5" />} Home
           </Link>
-          <a
-            href="#responsive-header"
-            className="block mt-4 lg:inline-block lg:mt-0 transition-all text-white hover:text-purple-300 mr-4"
+          <Link
+            to="/learn"
+            className="flex mt-4 gap-1 leading-5 lg:mt-0 transition-all text-white hover:text-purple-300 mr-4"
           >
-            Learn More
-          </a>
+            {<InformationCircleIcon className="size-5" />} Learn More
+          </Link>
           <Link
             to="/chat"
             className="flex mt-4 gap-1 leading-5 lg:mt-0 transition-all text-white hover:text-purple-300 mr-4"

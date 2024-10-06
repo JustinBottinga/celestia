@@ -112,12 +112,12 @@ function Home() {
             </div>
 
             <div className="my-3 fadein">
-              <a
-                href="#"
+              <Link
+                to="/learn"
                 className="text-white bg-purple-900 px-6 py-2 rounded-2xl m-10"
               >
                 Learn More
-              </a>
+              </Link>
               <a
                 href="#"
                 className="text-white bg-purple-900 px-9 py-2 rounded-2xl m-10"
@@ -251,12 +251,12 @@ function Home() {
                   Blending Technology with Nature
                 </li>
               </ul>
-              <a
-                href=""
+              <Link
+                to="/learn"
                 className="bg-purple-900 text-white px-9 py-2 rounded-2xl"
               >
                 Learn more
-              </a>
+              </Link>
             </div>
             <br />
             <br />
