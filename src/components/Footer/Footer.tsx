@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
     return (
         <>
-            <footer className="border-t border-purple-950 text-white py-6 mt-10">
+            <footer className="border-t border-solid border-gray-100/5 text-white py-6 mt-10">
                 <div className="container mx-auto flex justify-between items-center p-5">
                     <div>
                         <h2 className="text-lg font-semibold">Celestia</h2>
