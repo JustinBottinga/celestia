@@ -70,6 +70,22 @@ function Review() {
       Review: "Dat wijf heb ik nooit meer nodig, ik heb nu Celestia!",
       Rating: 5,
     },
+    {
+      Author: "Stefan Vet",
+      Title: "Nog maar net 18",
+      Image: "src/assets/temp/stefan.jpg",
+      Header: "Ik ga vreemd op Brechtje met Celestia",
+      Review: "Dat wijf heb ik nooit meer nodig, ik heb nu Celestia!",
+      Rating: 5,
+    },
+    {
+      Author: "Stefan Vet",
+      Title: "Nog maar net 18",
+      Image: "src/assets/temp/stefan.jpg",
+      Header: "Ik ga vreemd op Brechtje met Celestia",
+      Review: "Dat wijf heb ik nooit meer nodig, ik heb nu Celestia!",
+      Rating: 5,
+    },
   ];
 
   const Rating = (stars: number) => {
@@ -136,7 +152,7 @@ function Review() {
       </div> */}
 
       <Carousel
-        className="w-full max-w-7xl"
+        className="w-full max-w-7xl py-4"
         opts={{
           align: "start",
           loop: true,
@@ -147,12 +163,12 @@ function Review() {
           }),
         ]}
       >
-        <CarouselContent className="-ml-1">
+        <CarouselContent className="-ml-1 py-4">
           {reviews.map((ReviewObj, index) => (
-            <CarouselItem key={index} className="md:basis-1/3">
+            <CarouselItem key={index} className="md:basis-1/3 ">
               <div
                 style={{ background: "var(--background-secondary)" }}
-                className="border border-solid border-purple-100/10 w-96 rounded-md p-4"
+                className="border border-solid border-purple-100/10 w-96 rounded-md  p-4 select-none"
               >
                 <div className="header place-self-center flex gap-4 mb-6">
                   <img
@@ -166,12 +182,13 @@ function Review() {
                     </span>
                   </h3>
                 </div>
+
                 <div>
                   <p className="text-purple-100/80 font-bold  pb-2">
                     {ReviewObj.Header}
                   </p>
                   <p>{ReviewObj.Review}</p>
-                  <p className="flex text-purple-100/90 gap-2">
+                  <p className="flex text-purple-100/90 gap-2 pt-2">
                     Rating:
                     <span className="flex gap-1 text-amber-200">
                       {Rating(ReviewObj.Rating)}
@@ -181,9 +198,10 @@ function Review() {
               </div>
             </CarouselItem>
           ))}
+          {/**/}
         </CarouselContent>
-        <CarouselPrevious className="bg-transparent" />
-        <CarouselNext className="bg-transparent" />
+        <CarouselPrevious className="bg-transparent transition-all hover:border-0 hover:text-purple-500" />
+        <CarouselNext className="bg-transparent transition-all hover:border-0 hover:text-purple-500" />
       </Carousel>
     </div>
   );

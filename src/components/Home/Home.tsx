@@ -9,7 +9,7 @@ function Home() {
   const [mainTitle, setMainTitle] = useState("");
   const [subTitle, setSubTitle] = useState("");
 
-  const mainTitleText = "CELESTIA,";
+  const mainTitleText = "Celestia,";
   const subTitleText = "Your AI friend to talk to!";
 
   useEffect(() => {

@@ -15,7 +15,7 @@ function Navigation({ styling }: Props) {
     >
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <span className="font-semibold text-2xl tracking-tight font-serif pointer-events-none select-none">
-          CELESTIA
+          Celestia
         </span>
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
