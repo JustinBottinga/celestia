@@ -13,23 +13,17 @@
     --purple50: #FAF5FF;
 }
 
-/* width */
+
 ::-webkit-scrollbar {
     width: 10px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-    background: var(--background);
-}
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--purple950);
-    border-radius: 20px;
+    background: rgb(40, 33, 43);
+    border-radius: 0px;
+    
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--purple800);
+    background: rgb(63, 53, 68);
 }
