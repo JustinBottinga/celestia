@@ -23,10 +23,13 @@ function Chat(): JSX.Element {
   };
 
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
 
   // This will scroll the chat container to the bottom whenever new messages are added
   const scrollToBottom = () => {
-    chatEndRef.current?.scrollIntoView({ behavior: "instant" });
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
@@ -70,6 +73,7 @@ function Chat(): JSX.Element {
         <div className="main w-full z-10 flex justify-center h-5/6 p-4">
           <div className="max-lg:w-5/6 w-4/6 flex justify-between items-center h-full  flex-col box-border ">
             <div
+              ref={chatRef}
               className="messages rounded-t-xl border border-solid box-border border-gray-100/5 bg-black  
             bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-40 w-full flex-1
             overflow-y-scroll p-4 flex flex-col place-items-end gap-4"

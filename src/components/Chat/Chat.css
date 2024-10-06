@@ -3,6 +3,12 @@ input {
 }
 
 
+.messages::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.4);
+  background-clip: content-box;
+  border-radius: 0rem .75rem 0rem 0rem;
+}
+
 .messages::-webkit-scrollbar-thumb {
   border-radius: .25rem;
 } 
