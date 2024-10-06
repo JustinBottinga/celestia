@@ -1,5 +1,6 @@
 :root {
     --background: #140F19;
+    --background-secondary: #291f2e;
     --purple950: #3B0764;
     --purple900: #581C87;
     --purple800: #6B21A8;
@@ -12,6 +13,8 @@
     --purple100: #F3E8FF;
     --purple50: #FAF5FF;
 }
+
+
 
 
 ::-webkit-scrollbar {

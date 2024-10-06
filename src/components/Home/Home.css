@@ -1,6 +1,6 @@
 header {
   background-image:
-  linear-gradient(to bottom, rgb(20, 15, 25), transparent 60%),
+  linear-gradient(to bottom, rgb(20, 15, 25), transparent 50%),
   url("../../assets/hero/Ellipse 1.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,8 +12,6 @@ header {
 .grid-wrapper {
   position: relative; 
 }
-
-
 
 .bg-grid + div {
   z-index: 10;
