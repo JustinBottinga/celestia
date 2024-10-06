@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import Review from "../Review/Review";
+import Footer from "../Footer/Footer";
 import { useEffect, useState } from "react";
 import "./Home.css";
 
@@ -268,6 +269,7 @@ function Home() {
         </header>
       </div>
       <Review />
+      <Footer />
     </>
   );
 }

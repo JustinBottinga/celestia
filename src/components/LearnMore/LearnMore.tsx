@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
+import Footer from "../Footer/Footer";
 import "./LearnMore.css";
 
 function LearnMore() {
@@ -156,6 +157,7 @@ function LearnMore() {
                         Whether you need help, entertainment, or someone to chat with, Celestia is always there, combining technology with a human touch.</p>
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

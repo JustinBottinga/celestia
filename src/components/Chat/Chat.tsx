@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Chat.css";
 import Navigation from "../Navigation/Navigation";
+import Footer from "../Footer/Footer";
 import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
 
 function Chat(): JSX.Element {
@@ -114,6 +115,7 @@ function Chat(): JSX.Element {
           </form>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
