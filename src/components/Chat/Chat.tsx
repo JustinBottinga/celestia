@@ -71,8 +71,7 @@ function Chat(): JSX.Element {
           className="w-4/6 
                       flex justify-between items-center flex-col box-border "
         >
-          {/* Messages container */}
-          <div className="messages mb-4 bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5 w-full flex-1 overflow-y-scroll p-4 flex flex-col place-items-end gap-4">
+          <div className="messages rounded-t-xl border border-solid box-border border-gray-100/5 bg-black  bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 w-full flex-1 overflow-y-scroll p-4 flex flex-col place-items-end gap-4">
             {messages.map((messageObj, index) => (
               <div
                 key={index}
@@ -96,17 +95,18 @@ function Chat(): JSX.Element {
             autoComplete="off"
             className="w-full"
           >
-            <div className="relative">
+            <div className=" flex">
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={formData.name}
+                placeholder="Say 'Hello'"
                 onChange={handleChange}
-                className="rounded-full h-min w-full bg-opacity-20 bg-purple-200 p-2 px-3 text-purple-50 outline-none focus:caret-purple-50/50 hover:cursor-pointer"
+                className="rounded-bl-xl h-min w-full bg-opacity-20 bg-purple-200 p-2 px-3 text-purple-50 outline-none focus:caret-purple-50/50 hover:cursor-text"
               />
               <button
-                className="absolute right-0 rounded-s-sm bg-opacity-40 bg-purple-100 p-2 px-3 rounded-full hover:bg-opacity-10 cursor-pointer transition-all"
+                className=" bg-purple-100/40 p-2 px-3 rounded-br-xl  hover:bg-purple-100/10 cursor-pointer transition-all"
                 role="submit"
               >
                 <ChatBubbleOvalLeftIcon className="size-6 text-purple-50" />
