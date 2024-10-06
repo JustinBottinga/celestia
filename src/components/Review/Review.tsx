@@ -72,7 +72,7 @@ function Review() {
     },
   ];
 
-  const Rating = (stars: int) => {
+  const Rating = (stars: number) => {
     const content = [];
     for (let i = 0; i < stars; i++) {
       content.push(<StarIcon className="size-5" />);
