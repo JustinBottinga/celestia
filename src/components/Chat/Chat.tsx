@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Chat.css";
 import Navigation from "../Navigation/Navigation";
+import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
 
 function Chat(): JSX.Element {
   const [formData, setFormData] = useState({
     name: "",
   });
 
-  const [messages, setMessages] = useState<
-    { message: string; sender: string }[]
-  >([]);
+  const [messages, setMessages] = useState([
+    { message: "Hello, how are you?", sender: "Celestia" },
+  ]);
 
   // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +20,17 @@ function Chat(): JSX.Element {
       [name]: value,
     });
   };
+
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  // This will scroll the chat container to the bottom whenever new messages are added
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: "instant" });
+  };
+
+  useEffect(() => {
+    scrollToBottom(); // Scroll when messages change
+  }, [messages]);
 
   // Handle form submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -51,14 +63,15 @@ function Chat(): JSX.Element {
   };
 
   return (
-    <>
+    <div className="chat h-screen">
       <Navigation />
-      <div className="w-full flex justify-center h-screen p-4">
+      <div className="w-full flex justify-center h-5/6 p-4">
         <div
-          className="w-4/5 bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5
-                      flex justify-between items-center flex-col min-h-full overflow-y-scroll box-border p-4"
+          className="w-4/6 
+                      flex justify-between items-center flex-col box-border "
         >
-          <div className="messages w-full pb-4 flex flex-col place-items-end gap-4 ">
+          {/* Messages container */}
+          <div className="messages mb-4 bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5 w-full flex-1 overflow-y-scroll p-4 flex flex-col place-items-end gap-4">
             {messages.map((messageObj, index) => (
               <div
                 key={index}
@@ -71,7 +84,11 @@ function Chat(): JSX.Element {
                 <strong>{messageObj.sender}:</strong> {messageObj.message}
               </div>
             ))}
+            {/* Empty div that serves as the scroll anchor */}
+            <div ref={chatEndRef} />
           </div>
+
+          {/* Form section */}
           <form
             onSubmit={handleSubmit}
             method="post"
@@ -91,26 +108,13 @@ function Chat(): JSX.Element {
                 className="absolute right-0 rounded-s-sm bg-opacity-40 bg-purple-100 p-2 px-3 rounded-full hover:bg-opacity-10 cursor-pointer transition-all"
                 role="submit"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6 text-purple-200"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                  />
-                </svg>
+                <ChatBubbleOvalLeftIcon className="size-6 text-purple-50" />
               </button>
             </div>
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
