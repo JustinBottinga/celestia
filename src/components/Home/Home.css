@@ -33,3 +33,44 @@ header {
 .bg-grid + div {
   z-index: 10;
 }
+.message-bubble {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+.fadein {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+  animation-delay: 4s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-bubble:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.message-bubble:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.message-bubble:nth-child(3) {
+  animation-delay: 1.4s;
+}
+
+.fixed-text {
+  height: 100px;
+  overflow: hidden;
+}

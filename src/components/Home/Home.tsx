@@ -1,9 +1,42 @@
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import Review from "../Review/Review";
+import { useEffect, useState } from "react";
 import "./Home.css";
 
 function Home() {
+  const [mainTitle, setMainTitle] = useState("");
+  const [subTitle, setSubTitle] = useState("");
+
+  const mainTitleText = "CELESTIA,";
+  const subTitleText = "Your AI friend to talk to!";
+
+  useEffect(() => {
+    let mainIndex = 0;
+    let subIndex = 0;
+
+    const typeMainTitle = () => {
+      if (mainIndex < mainTitleText.length) {
+        setMainTitle(mainTitleText.slice(0, mainIndex + 1));
+        mainIndex++;
+        setTimeout(typeMainTitle, 100);
+      } else {
+        setTimeout(typeSubTitle, 250);
+      }
+    };
+
+    const typeSubTitle = () => {
+      if (subIndex < subTitleText.length) {
+        setSubTitle(subTitleText.slice(0, subIndex + 1));
+        subIndex++;
+        setTimeout(typeSubTitle, 100);
+      }
+    };
+
+    typeMainTitle();
+  }, []);
+
+
   return (
     <>
       <Navigation />
@@ -15,15 +48,17 @@ function Home() {
             <br />
             <br />
             <div className="text-left">
+              <div className="fixed-text">
               <h1 className="text-white text-6xl font-bold font-mono">
-                CELESTIA,
+                  {mainTitle}
               </h1>
               <h3 className="text-white text-4xl">
-                Your AI friend to talk to!
+                  {subTitle}
               </h3>
+              </div>
             </div>
             <div className="flex w-1/2 justify-around my-3">
-              <div className="flex">
+              <div className="flex fadein">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -40,7 +75,7 @@ function Home() {
                 </svg>
                 <h4 className="text-white">Placeholder</h4>
               </div>
-              <div className="flex">
+              <div className="flex fadein">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -57,7 +92,7 @@ function Home() {
                 </svg>
                 <h4 className="text-white">Placeholder</h4>
               </div>
-              <div className="flex">
+              <div className="flex fadein">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -76,7 +111,7 @@ function Home() {
               </div>
             </div>
 
-            <div className="my-3">
+            <div className="my-3 fadein">
               <a
                 href="#"
                 className="text-white bg-purple-900 px-6 py-2 rounded-2xl m-10"
@@ -96,18 +131,19 @@ function Home() {
             <div className="bg-purple-900 px-4 py-2 rounded-t-2xl self-start ">
               <h3 className="text-white">Talk to Celestia</h3>
             </div>
-            <div className="border border-solid border-gray-100/5 bg-black  bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 w-full gap-4 flex flex-col rounded-tr-2xl p-5">
-              <p className="bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
+            <div className="message-container border border-solid border-gray-100/5 bg-black  bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 w-full gap-4 flex flex-col rounded-tr-2xl p-5">
+              <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
                 Who is Celestia?
               </p>
-              <p className=" bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg p-3">
+
+              <p className="message-bubble bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg p-3">
                 Meet Celestia, I am your personal AI friend designed to
                 accompany you on your journey through life. With an inviting
                 personality and a warm, friendly demeanor, I am here to provide
                 support, companionship, and a touch of magic to your daily
                 routine.
               </p>
-              <p className="bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
+              <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
                 Thanks!
               </p>
             </div>
