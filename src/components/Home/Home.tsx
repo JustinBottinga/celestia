@@ -36,25 +36,22 @@ function Home() {
     typeMainTitle();
   }, []);
 
-
   return (
     <>
       <Navigation />
       <div className="grid-wrapper">
         <div className="bg-grid"></div>
-        <header>
+        <header className="border-b border-solid border-gray-100/5">
           <div className=" w-8/12 m-auto flex justify-center items-center flex-col">
             <br />
             <br />
             <br />
             <div className="text-left">
               <div className="fixed-text">
-              <h1 className="text-white text-6xl font-bold font-mono">
+                <h1 className="text-transparent text-6xl gradien bg-gradient-to-r  from-rose-400 via-pink-200 to-violet-300 bg-clip-text font-bold font-serif">
                   {mainTitle}
-              </h1>
-              <h3 className="text-white text-4xl">
-                  {subTitle}
-              </h3>
+                </h1>
+                <h3 className="text-white text-4xl">{subTitle}</h3>
               </div>
             </div>
             <div className="flex w-1/2 justify-around my-3">
@@ -131,7 +128,7 @@ function Home() {
             <div className="bg-purple-900 px-4 py-2 rounded-t-2xl self-start ">
               <h3 className="text-white">Talk to Celestia</h3>
             </div>
-            <div className="message-container border border-solid border-gray-100/5 bg-black  bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 w-full gap-4 flex flex-col rounded-tr-2xl p-5">
+            <div className="message-container border border-solid border-gray-100/5 bg-black  bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-40 w-full gap-4 flex flex-col rounded-tr-2xl p-5">
               <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
                 Who is Celestia?
               </p>

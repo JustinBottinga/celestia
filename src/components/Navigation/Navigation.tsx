@@ -4,11 +4,17 @@ import { HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 import { ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
-function Navigation() {
+interface Props {
+  styling?: string;
+}
+
+function Navigation({ styling }: Props) {
   return (
-    <nav className="flex relative top-0 z-10 items-center justify-between flex-wrap p-6 h-fit">
+    <nav
+      className={`${styling} flex relative top-0 z-10 items-center justify-between flex-wrap p-6 h-fit`}
+    >
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <span className="font-semibold text-2xl tracking-tight font-mono pointer-events-none select-none">
+        <span className="font-semibold text-2xl tracking-tight font-serif pointer-events-none select-none">
           CELESTIA
         </span>
       </div>

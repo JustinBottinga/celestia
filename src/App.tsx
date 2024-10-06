@@ -8,9 +8,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" Component={Home}></Route>
         <Route path="learn" Component={LearnMore}></Route>
         <Route path="chat" Component={Chat}></Route>
-        <Route path="/" Component={Home}></Route>
+        <Route path="*" Component={Home} />
       </Routes>
     </BrowserRouter>
   );
