@@ -64,55 +64,57 @@ function Chat(): JSX.Element {
   };
 
   return (
-    <div className="chat h-screen">
-      <Navigation />
-      <div className="w-full flex justify-center h-5/6 p-4">
-        <div
-          className="w-4/6 
-                      flex justify-between items-center flex-col box-border "
-        >
-          <div className="messages rounded-t-xl border border-solid box-border border-gray-100/5 bg-black  bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 w-full flex-1 overflow-y-scroll p-4 flex flex-col place-items-end gap-4">
-            {messages.map((messageObj, index) => (
-              <div
-                key={index}
-                className={`p-3 ${
-                  messageObj.sender === "You"
-                    ? "place-self-end  bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg"
-                    : "place-self-start bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg"
-                }`}
-              >
-                <strong>{messageObj.sender}:</strong> {messageObj.message}
-              </div>
-            ))}
-            {/* Empty div that serves as the scroll anchor */}
-            <div ref={chatEndRef} />
-          </div>
-
-          {/* Form section */}
-          <form
-            onSubmit={handleSubmit}
-            method="post"
-            autoComplete="off"
-            className="w-full"
-          >
-            <div className=" flex">
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                placeholder="Say 'Hello'"
-                onChange={handleChange}
-                className="rounded-bl-xl h-min w-full bg-opacity-20 bg-purple-200 p-2 px-3 text-purple-50 outline-none focus:caret-purple-50/50 hover:cursor-text"
-              />
-              <button
-                className=" bg-purple-100/40 p-2 px-3 rounded-br-xl  hover:bg-purple-100/10 cursor-pointer transition-all"
-                role="submit"
-              >
-                <ChatBubbleOvalLeftIcon className="size-6 text-purple-50" />
-              </button>
+    <div className="bg-grid">
+      <div className="main h-screen">
+        <Navigation styling="backdrop-blur-lg border-b border-solid border-gray-100/5" />
+        <div className="main w-full z-10 flex justify-center h-5/6 p-4">
+          <div className="max-lg:w-5/6 w-4/6 flex justify-between items-center h-full  flex-col box-border ">
+            <div
+              className="messages rounded-t-xl border border-solid box-border border-gray-100/5 bg-black  
+            bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-40 w-full flex-1
+            overflow-y-scroll p-4 flex flex-col place-items-end gap-4"
+            >
+              {messages.map((messageObj, index) => (
+                <div
+                  key={index}
+                  className={`p-3 ${
+                    messageObj.sender === "You"
+                      ? "place-self-end  bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg"
+                      : "place-self-start bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg"
+                  }`}
+                >
+                  <strong>{messageObj.sender}:</strong> {messageObj.message}
+                </div>
+              ))}
+              {/* Empty div that serves as the scroll anchor */}
+              <div ref={chatEndRef} />
             </div>
-          </form>
+
+            <form
+              onSubmit={handleSubmit}
+              method="post"
+              autoComplete="off"
+              className="w-full"
+            >
+              <div className="flex">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  placeholder="Say 'Hello'"
+                  onChange={handleChange}
+                  className="rounded-bl-xl h-min w-full bg-opacity-20 bg-purple-200 p-2 px-3 text-purple-50 outline-none focus:caret-purple-50/50 hover:cursor-text"
+                />
+                <button
+                  className=" bg-purple-100/40 p-2 px-3 rounded-br-xl  hover:bg-purple-100/10 cursor-pointer transition-all"
+                  role="submit"
+                >
+                  <ChatBubbleOvalLeftIcon className="size-6 text-purple-50" />
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       <Footer />
