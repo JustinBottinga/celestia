@@ -128,7 +128,7 @@ function Home() {
                   <ChatBubbleOvalLeftEllipsisIcon className="size-5" />
                 </h3>
               </div>
-              <div className="review-hover">
+              <div className="preview-hover">
                 <div className="message-container bg-black border border-solid border-gray-400/50 bg-clip-padding bg-opacity-40 w-full gap-4 flex flex-col rounded-tr-lg rounded-b-lg p-5">
                   <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
                     Who is Celestia?
@@ -145,7 +145,14 @@ function Home() {
                     Thanks!
                   </p>
                 </div>
-                <div className=" hover-container rounded-lg rounded-tl-none border border-solid border-gray-400/50 bg-clip-padding"></div>
+                <div className="hover-container rounded-lg rounded-tl-none bg-black bg-opacity-30 border border-solid border-gray-400/50 bg-clip-padding flex justify-center items-center">
+                  <Link
+                    to="/chat"
+                    className="text-white r h-fit w-fit bg-purple-500 transition-all  hover:bg-violet-700 px-6 py-2 rounded-lg m-10"
+                  >
+                    Start a Chat!
+                  </Link>
+                </div>
               </div>
             </div>
             {/* 
