@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Chat.css";
 import Navigation from "../Navigation/Navigation";
-import Footer from "../Footer/Footer";
-import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
+import {
+  ChatBubbleOvalLeftIcon,
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  Cog6ToothIcon,
+  PencilIcon,
+} from "@heroicons/react/24/outline";
 
 function Chat(): JSX.Element {
+  // START -- FORM DATA
   const [formData, setFormData] = useState({
     name: "",
   });
 
-  const [messages, setMessages] = useState([
-    { message: "Hello, how are you?", sender: "Celestia" },
-  ]);
-
-  // Handle input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -21,22 +22,19 @@ function Chat(): JSX.Element {
       [name]: value,
     });
   };
+  // END -- FORM DATA
 
-  const chatEndRef = useRef<HTMLDivElement>(null);
-  const chatRef = useRef<HTMLDivElement>(null);
-
-  // This will scroll the chat container to the bottom whenever new messages are added
-  const scrollToBottom = () => {
-    if (chatRef.current) {
-      chatRef.current.scrollTop = chatRef.current.scrollHeight;
-    }
-  };
+  // START -- MESSAGES
+  const [messages, setMessages] = useState([
+    { message: "Hello, how are you?", sender: "Celestia" },
+  ]);
 
   useEffect(() => {
     scrollToBottom(); // Scroll when messages change
   }, [messages]);
+  // END -- MESSAGES
 
-  // Handle form submit
+  //START -- HANDLE SUBMIT
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -65,63 +63,122 @@ function Chat(): JSX.Element {
       }, 1000); // 1-second delay for the AI response
     }
   };
+  //END -- HANDLE SUBMIT
+
+  // START -- SCROLL
+  const chatEndRef = useRef<HTMLDivElement>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  };
+  // END -- SCROLL
+
+  //START -- INBOX TOGGLE
+  const [wideInbox, setWideInbox] = useState(true);
+
+  const ToggleCollapse = (): void => {
+    setWideInbox((prevWideInbox) => !prevWideInbox);
+  };
+
+  //END -- INBOX TOGGLE
 
   return (
     <div className="bg-grid">
       <div className="main h-screen">
         <Navigation styling="backdrop-blur-lg border-b border-solid border-gray-100/5" />
+
         <div className="main w-full z-10 flex justify-center h-5/6 p-4">
-          <div className="max-lg:w-5/6 w-4/6 flex justify-between items-center h-full  flex-col box-border ">
+          <div className="max-lg:w-full w-5/6 flex justify-start my-6 h-full rounded-xl border border-solid box-border border-gray-100/5">
+            {/* inbox */}
             <div
-              ref={chatRef}
-              className="messages rounded-t-xl border border-solid box-border border-gray-100/5 bg-black  
-            bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-40 w-full flex-1
-            overflow-y-scroll p-4 flex flex-col place-items-end gap-4"
+              className={`inbox bg-black rounded-l-xl bg-clip-padding flex flex-col transition-all duration-300 ease-in-out  backdrop-filter backdrop-blur-3xl bg-opacity-60  h-full
+              text-white p-4 ${wideInbox ? "w-1/5" : "w-fit"}  `}
             >
-              {messages.map((messageObj, index) => (
+              {/* Top section */}
+              <div className="flex flex-row gap-2 place-self-start justify-between w-full border-b-2 border-solid border-gray-100/10 pb-4">
+                {/* Collapse button */}
                 <div
-                  key={index}
-                  className={`p-3 ${
-                    messageObj.sender === "You"
-                      ? "place-self-end  bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg"
-                      : "place-self-start bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg"
-                  }`}
+                  title={wideInbox ? "Collapse" : "Show"}
+                  onClick={ToggleCollapse}
+                  className=" text-purple-100 leading-5 p-2 bg-purple-100/10 transition-all hover:bg-purple-100/20 hover:cursor-pointer w-fit h-fit rounded-lg"
                 >
-                  <strong>{messageObj.sender}:</strong> {messageObj.message}
+                  {wideInbox ? (
+                    <ChevronDoubleLeftIcon className="size-5" />
+                  ) : (
+                    <ChevronDoubleRightIcon className="size-5" />
+                  )}
                 </div>
-              ))}
-              {/* Empty div that serves as the scroll anchor */}
-              <div ref={chatEndRef} />
+
+                {/* New chat */}
+                <div
+                  title="New chat"
+                  hidden={!wideInbox}
+                  className=" text-purple-100 leading-5 p-2 bg-purple-100/10 transition-all hover:bg-purple-100/20 hover:cursor-pointer w-fit h-fit rounded-lg"
+                >
+                  <PencilIcon className="size-5" />
+                </div>
+              </div>
+              {/* Middle section */}
+              <div className="flex flex-col w-full  flex-grow"></div>
+
+              {/* Bottom section */}
+              <div className="flex flex-row gap-2 place-self-start justify-between w-full pt-4 border-t-2 border-solid border-gray-100/10">
+                <div className=" text-purple-100 leading-5 p-2 bg-purple-100/10 transition-all hover:bg-purple-100/20 hover:cursor-pointer w-fit h-fit rounded-lg">
+                  <Cog6ToothIcon className="size-5" />
+                </div>
+              </div>
             </div>
 
-            <form
-              onSubmit={handleSubmit}
-              method="post"
-              autoComplete="off"
-              className="w-full"
-            >
-              <div className="flex">
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  placeholder="Say 'Hello'"
-                  onChange={handleChange}
-                  className="rounded-bl-xl h-min w-full bg-opacity-20 bg-purple-200 p-2 px-3 text-purple-50 outline-none focus:caret-purple-50/50 hover:cursor-text"
-                />
-                <button
-                  className=" bg-purple-100/40 p-2 px-3 rounded-br-xl  hover:bg-purple-100/10 cursor-pointer transition-all"
-                  role="submit"
-                >
-                  <ChatBubbleOvalLeftIcon className="size-6 text-purple-50" />
-                </button>
+            {/* chat */}
+            <div className="chat flex-grow min-h-full max-h-full flex flex-col">
+              <div
+                ref={chatRef}
+                className="messages rounded-tr-xl  bg-black  
+                bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-40 flex-1
+                p-4 flex flex-col place-items-end gap-4 max-h-full  overflow-y-scroll"
+              >
+                {messages.map((messageObj, index) => (
+                  <div
+                    key={index}
+                    className={`p-3 select-none ${
+                      messageObj.sender === "You"
+                        ? "place-self-end  bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg"
+                        : "place-self-start bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg"
+                    }`}
+                  >
+                    <strong>{messageObj.sender}:</strong> {messageObj.message}
+                  </div>
+                ))}
+                {/* Empty div that serves as the scroll anchor */}
+                <div ref={chatEndRef} />
               </div>
-            </form>
+
+              <form onSubmit={handleSubmit} method="post" autoComplete="off">
+                <div className="flex">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    placeholder="Say 'Hello'"
+                    onChange={handleChange}
+                    className=" h-min w-full bg-opacity-20 bg-purple-200 p-2 px-3 text-purple-50 outline-none focus:caret-purple-50/50 hover:cursor-text"
+                  />
+                  <button
+                    className=" bg-purple-100/40 p-2 px-3 rounded-br-xl  hover:bg-purple-100/10 cursor-pointer transition-all"
+                    role="submit"
+                  >
+                    <ChatBubbleOvalLeftIcon className="size-6 text-purple-50" />
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }
