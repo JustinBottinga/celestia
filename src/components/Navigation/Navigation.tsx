@@ -50,7 +50,7 @@ function Navigation({ styling }: Props) {
         <div className="mx-2">
           <Link
             to="#"
-            className="flex leading-5 gap-1 text-sm transition-all px-4 py-2  border rounded text-white border-white hover:border-transparent hover:text-purple-500 hover:bg-white mt-4 lg:mt-0"
+            className="text-purple-200 leading-5 border border-solid bg-purple-200/10 border-purple-200 transition-all bg-opacity-70 border-opacity-70 hover:bg-opacity-100 hover:border-opacity-100  px-4 py-2 gap-2 flex rounded-lg"
           >
             {<UserIcon className="size-5"></UserIcon>} Login
           </Link>

@@ -1,7 +1,6 @@
 header {
-  background-image:
-  linear-gradient(to bottom, rgb(20, 15, 25), transparent 50%),
-  url("../../assets/hero/Ellipse 1.png");
+  background-image: linear-gradient(to bottom, rgb(20, 15, 25), transparent 50%),
+    url("../../assets/hero/Ellipse 1.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -10,12 +9,33 @@ header {
 }
 
 .grid-wrapper {
-  position: relative; 
+  position: relative;
 }
 
 .bg-grid + div {
   z-index: 10;
 }
+
+.review-hover {
+  position: relative;
+  transition: 2s ease;
+}
+
+.review-hover:hover .hover-container {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: 0.15s ease;
+  backdrop-filter: blur(10px);
+}
+
+.hover-container {
+  display: none;
+}
+
 .message-bubble {
   opacity: 0;
   transform: translateY(20px);

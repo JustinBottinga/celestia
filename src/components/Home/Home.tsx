@@ -4,6 +4,7 @@ import Review from "../Review/Review";
 import Footer from "../Footer/Footer";
 import { useEffect, useState } from "react";
 import "./Home.css";
+import { ChatBubbleOvalLeftEllipsisIcon } from "@heroicons/react/20/solid";
 
 function Home() {
   const [mainTitle, setMainTitle] = useState("");
@@ -44,9 +45,6 @@ function Home() {
         <div className="bg-grid"></div>
         <header className="border-b border-solid border-gray-100/5">
           <div className=" w-8/12 m-auto flex justify-center items-center flex-col">
-            <br />
-            <br />
-            <br />
             <div className="text-left">
               <div className="fixed-text">
                 <h1 className="text-transparent text-6xl gradien bg-gradient-to-r  from-rose-400 via-pink-200 to-violet-300 bg-clip-text font-bold font-serif">
@@ -55,7 +53,7 @@ function Home() {
                 <h3 className="text-white text-4xl">{subTitle}</h3>
               </div>
             </div>
-            <div className="flex w-1/2 justify-around my-3">
+            {/* <div className="flex w-1/2 justify-around my-3">
               <div className="flex fadein">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -107,57 +105,57 @@ function Home() {
                 </svg>
                 <h4 className="text-white">Placeholder</h4>
               </div>
-            </div>
+            </div> */}
 
-            <div className="my-3 fadein">
+            <div className="my-12 fadein">
               <Link
                 to="/learn"
-                className="text-white bg-purple-900 px-6 py-2 rounded-2xl m-10"
+                className="text-purple-200 border border-solid bg-purple-200/10 border-purple-200 transition-all bg-opacity-70 border-opacity-70 hover:bg-opacity-100 hover:border-opacity-100  px-6 py-2 rounded-lg m-10"
               >
                 Learn More
               </Link>
               <a
                 href="#"
-                className="text-white bg-purple-900 px-9 py-2 rounded-2xl m-10"
+                className="text-purple-200 border border-solid bg-purple-200/10 border-purple-200 transition-all bg-opacity-70 border-opacity-70 hover:bg-opacity-100 hover:border-opacity-100  px-6 py-2 rounded-lg m-10"
               >
                 Register
               </a>
             </div>
-            <br />
-            <br />
-            <br />
-            <div className="bg-purple-900 px-4 py-2 rounded-t-2xl self-start ">
-              <h3 className="text-white">Talk to Celestia</h3>
-            </div>
-            <div className="message-container border border-solid border-gray-100/5 bg-black  bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-40 w-full gap-4 flex flex-col rounded-tr-2xl p-5">
-              <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
-                Who is Celestia?
-              </p>
+            <div className="review my-16">
+              <div className="bg-black border border-b-0 border-solid border-gray-400/50 bg-clip-padding bg-opacity-40 px-4 py-2 w-fit rounded-t-lg self-start  ">
+                <h3 className="text-purple-100/70 flex gap-2 leading-5 ">
+                  Celestia
+                  <ChatBubbleOvalLeftEllipsisIcon className="size-5" />
+                </h3>
+              </div>
+              <div className="review-hover">
+                <div className="message-container bg-black border border-solid border-gray-400/50 bg-clip-padding bg-opacity-40 w-full gap-4 flex flex-col rounded-tr-lg rounded-b-lg p-5">
+                  <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
+                    Who is Celestia?
+                  </p>
 
-              <p className="message-bubble bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg p-3">
-                Meet Celestia, I am your personal AI friend designed to
-                accompany you on your journey through life. With an inviting
-                personality and a warm, friendly demeanor, I am here to provide
-                support, companionship, and a touch of magic to your daily
-                routine.
-              </p>
-              <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
-                Thanks!
-              </p>
+                  <p className="message-bubble bg-purple-300 bg-blend-darken text-slate-900 rounded-r-lg rounded-tl-lg p-3">
+                    Meet Celestia, I am your personal AI friend designed to
+                    accompany you on your journey through life. With an inviting
+                    personality and a warm, friendly demeanor, I am here to
+                    provide support, companionship, and a touch of magic to your
+                    daily routine.
+                  </p>
+                  <p className="message-bubble bg-purple-50/90 text-slate-950/100 rounded-l-lg rounded-tr-lg p-3 text-end inline-block ml-auto">
+                    Thanks!
+                  </p>
+                </div>
+                <div className=" hover-container rounded-lg rounded-tl-none border border-solid border-gray-400/50 bg-clip-padding"></div>
+              </div>
             </div>
-
+            {/* 
             <Link
               to="/chat"
               className="bg-purple-900 text-white w-full rounded-bl-2xl rounded-br-2xl text-center py-3 text-1xl hover:bg-purple-950"
             >
               Try yourself!
-            </Link>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            </Link> */}
+
             <div className="self-start">
               <h3 className="text-3xl text-white">
                 What Makes Celestia Special?
