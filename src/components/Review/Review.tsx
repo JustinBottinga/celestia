@@ -57,9 +57,9 @@ function Review() {
       Author: "Justin Bottinga",
       Title: "Faggot",
       Image: "src/assets/temp/justin.jpg",
-      Header: "Beste chatbot 2024!",
+      Header: "Heb mijn vriendin niet meer nodig!",
       Review:
-        "Nog nooit ben ik zo vriendelijk tewoord gestaan door een AI, ze voelt bijna echt",
+        "Suze ging vreemd op mij, en door middel van Celestia kon ik het terug doen!",
       Rating: 5,
     },
     {
