@@ -3,6 +3,7 @@ import "./Chat.css";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 import { ChatBubbleOvalLeftIcon } from "@heroicons/react/24/outline";
+import { getAIResponse } from "../../Services/AIService";
 
 function Chat(): JSX.Element {
   const [formData, setFormData] = useState({
@@ -36,8 +37,10 @@ function Chat(): JSX.Element {
     scrollToBottom(); // Scroll when messages change
   }, [messages]);
 
+
+
   // Handle form submit
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!(formData.name == null || formData.name === "")) {
@@ -52,17 +55,27 @@ function Chat(): JSX.Element {
         name: "",
       });
 
+      const aiResponse = await getAIResponse(formData.name);
+
+      // Add AI's response to the chat
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { message: aiResponse, sender: "Celestia" },
+      ]);
+
       // Simulated response from the AI after a delay
-      setTimeout(() => {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            message:
-              "Hi, I am your personal AI friend designed to accompany you on your journey through life. With an inviting personality and a warm, friendly demeanor, I am here to provide support, companionship, and a touch of magic to your daily routine.",
-            sender: "Celestia",
-          },
-        ]);
-      }, 1000); // 1-second delay for the AI response
+      // setTimeout(() => {
+      //   setMessages((prevMessages) => [
+      //     ...prevMessages,
+      //     {
+      //       message:
+      //         "Hi, I am your personal AI friend designed to accompany you on your journey through life. With an inviting personality and a warm, friendly demeanor, I am here to provide support, companionship, and a touch of magic to your daily routine.",
+      //       sender: "Celestia",
+      //     },
+      //   ]);
+      // }, 1000); // 1-second delay for the AI response
+
+
     }
   };
 
