@@ -55,7 +55,7 @@ function Review() {
     },
     {
       Author: "Justin Bottinga",
-      Title: "Faggot",
+      Title: "American villain",
       Image: "src/assets/temp/justin.jpg",
       Header: "Heb mijn vriendin niet meer nodig!",
       Review:
@@ -71,19 +71,19 @@ function Review() {
       Rating: 5,
     },
     {
-      Author: "Stefan Vet",
-      Title: "Nog maar net 18",
-      Image: "src/assets/temp/stefan.jpg",
-      Header: "Ik ga vreemd op Brechtje met Celestia",
-      Review: "Dat wijf heb ik nooit meer nodig, ik heb nu Celestia!",
+      Author: "Jordy Profeit",
+      Title: "Slachtoffer van justin",
+      Image: "src/assets/temp/jordy.jpeg",
+      Header: "Mijn vriendin heeft mij een blauw oog geslagen.",
+      Review: "Ik heb haar verlaten voor Celestia",
       Rating: 5,
     },
     {
-      Author: "Stefan Vet",
-      Title: "Nog maar net 18",
-      Image: "src/assets/temp/stefan.jpg",
-      Header: "Ik ga vreemd op Brechtje met Celestia",
-      Review: "Dat wijf heb ik nooit meer nodig, ik heb nu Celestia!",
+      Author: "Noe Hent",
+      Title: "Alcholist",
+      Image: "src/assets/temp/",
+      Header: "Ik ben alcholist geworden",
+      Review: "Celestia helpt mij hiermee!",
       Rating: 5,
     },
   ];
