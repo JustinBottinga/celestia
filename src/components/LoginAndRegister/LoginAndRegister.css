@@ -1,0 +1,9 @@
+.main {
+    background-image:
+        url("../../assets/chat/blur.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    position: relative;
+    z-index: 1;
+}
