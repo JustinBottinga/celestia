@@ -1,9 +1,10 @@
-import Navigation from "../Navigation/Navigation"
-import Footer from "../Footer/Footer"
-import "./LoginAndRegister.css"
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import Navigation from "../Navigation/Navigation";
+import Footer from "../Footer/Footer";
+import "./LoginAndRegister.css";
+import { Link } from "react-router-dom";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
@@ -11,34 +12,94 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tab"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tab";
+
+enum FormType {
+    SignIn = "signIn",
+    SignUp = "signUp",
+}
 
 function LoginAndRegister() {
+    // State for Sign In inputs
+    const [signInEmail, setSignInEmail] = useState("");
+    const [signInPassword, setSignInPassword] = useState("");
+
+    // State for Sign Up inputs
+    const [signUpUsername, setSignUpUsername] = useState("");
+    const [signUpEmail, setSignUpEmail] = useState("");
+    const [signUpPassword, setSignUpPassword] = useState("");
+    const [signUpRepeatPassword, setSignUpRepeatPassword] = useState("");
+    const [signUpBirthday, setSignUpBirthday] = useState("");
+
+    const handleSignIn = () => {
+        console.log("Sign In Credentials:");
+        console.log("Email/Username:", signInEmail);
+        console.log("Password:", signInPassword);
+    };
+
+    const handleSignUp = () => {
+        console.log("Sign Up Credentials:");
+        console.log("Username:", signUpUsername);
+        console.log("Email:", signUpEmail);
+        console.log("Password:", signUpPassword);
+        console.log("Repeat Password:", signUpRepeatPassword);
+        console.log("Birthday:", signUpBirthday);
+    };
+
+    // Define event handlers with types
+    const handleSignInEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSignInEmail(e.target.value);
+    };
+
+    const handleSignInPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSignInPassword(e.target.value);
+    };
+
+    const handleSignUpUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSignUpUsername(e.target.value);
+    };
+
+    const handleSignUpEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSignUpEmail(e.target.value);
+    };
+
+    const handleSignUpPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSignUpPassword(e.target.value);
+    };
+
+    const handleSignUpRepeatPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSignUpRepeatPassword(e.target.value);
+    };
+
+    const handleSignUpBirthdayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSignUpBirthday(e.target.value);
+    };
+
     return (
         <div className="bg-grid">
             <div className="main h-screen">
                 <Navigation styling="backdrop-blur-lg border-b border-solid border-gray-100/5" />
                 <div className="flex justify-center items-center my-8">
-                    <Tabs defaultValue="signIn" className="w-[400px] text-white">
+                    <Tabs defaultValue={FormType.SignIn} className="w-[400px] text-white">
                         <TabsList className="flex w-full justify-between rounded-lg p-1">
                             <TabsTrigger
-                                value="signIn"
+                                value={FormType.SignIn}
                                 className="w-full py-2 text-center font-semibold transition-colors duration-300 ease-in-out rounded-lg data-[static=active]:border-purple-200 data-[state=active]:bg-purple-200/10 data-[state=active]:bg-opacity-100 data-[state=active]:border-opacity-100 hover:text-purple-400"
                             >
                                 Sign in
                             </TabsTrigger>
                             <TabsTrigger
-                                value="signUp"
+                                value={FormType.SignUp}
                                 className="w-full py-2 text-center font-semibold transition-colors duration-300 ease-in-out rounded-lg data-[static=active]:border-purple-200 data-[state=active]:bg-purple-200/10 data-[state=active]:bg-opacity-100 data-[state=active]:border-opacity-100 hover:text-purple-400"
                             >
                                 Sign up
                             </TabsTrigger>
                         </TabsList>
 
-                        <TabsContent value="signIn">
+                        <TabsContent value={FormType.SignIn}>
                             <Card>
                                 <CardHeader>
                                     <CardTitle>Sign in</CardTitle>
@@ -49,21 +110,31 @@ function LoginAndRegister() {
                                 </CardHeader>
                                 <CardContent className="space-y-2">
                                     <div className="space-y-1">
-                                        <Label htmlFor="name">Emailadress</Label>
-                                        <Input id="name" placeholder="Celestia@domain.com" />
+                                        <Label htmlFor="loginEmailOrUsername">Email address or username</Label>
+                                        <Input
+                                            id="loginEmailOrUsername"
+                                            placeholder="Celestia@domain.com"
+                                            value={signInEmail}
+                                            onChange={handleSignInEmailChange}
+                                        />
                                     </div>
                                     <div className="space-y-1">
-                                        <Label htmlFor="username">Password</Label>
-                                        <Input id="username" type="password" />
+                                        <Label htmlFor="loginPassword">Password</Label>
+                                        <Input
+                                            id="loginPassword"
+                                            type="password"
+                                            value={signInPassword}
+                                            onChange={handleSignInPasswordChange}
+                                        />
                                     </div>
                                     <Link to="#" className="text-gray-300 hover:text-white">Forgot password</Link>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button>Sign in</Button>
+                                    <Button onClick={handleSignIn}>Sign in</Button>
                                 </CardFooter>
                             </Card>
                         </TabsContent>
-                        <TabsContent value="signUp">
+                        <TabsContent value={FormType.SignUp}>
                             <Card>
                                 <CardHeader>
                                     <CardTitle>Sign up</CardTitle>
@@ -73,28 +144,53 @@ function LoginAndRegister() {
                                 </CardHeader>
                                 <CardContent className="space-y-2">
                                     <div className="space-y-1">
-                                        <Label htmlFor="current">Username</Label>
-                                        <Input id="current" />
+                                        <Label htmlFor="registerUsername">Username</Label>
+                                        <Input
+                                            id="registerUsername"
+                                            value={signUpUsername}
+                                            onChange={handleSignUpUsernameChange}
+                                        />
                                     </div>
                                     <div className="space-y-1">
-                                        <Label htmlFor="current">Emailadress</Label>
-                                        <Input id="current" type="email" placeholder="Celestia@domain.com" />
+                                        <Label htmlFor="registerEmail">Email address</Label>
+                                        <Input
+                                            id="registerEmail"
+                                            type="email"
+                                            placeholder="Celestia@domain.com"
+                                            value={signUpEmail}
+                                            onChange={handleSignUpEmailChange}
+                                        />
                                     </div>
                                     <div className="space-y-1">
-                                        <Label htmlFor="new">Password</Label>
-                                        <Input id="new" type="password" />
+                                        <Label htmlFor="registerPassword">Password</Label>
+                                        <Input
+                                            id="registerPassword"
+                                            type="password"
+                                            value={signUpPassword}
+                                            onChange={handleSignUpPasswordChange}
+                                        />
                                     </div>
                                     <div className="space-y-1">
-                                        <Label htmlFor="new">Repeat password</Label>
-                                        <Input id="new" type="password" />
+                                        <Label htmlFor="registerRepeatPassword">Repeat password</Label>
+                                        <Input
+                                            id="registerRepeatPassword"
+                                            type="password"
+                                            value={signUpRepeatPassword}
+                                            onChange={handleSignUpRepeatPasswordChange}
+                                        />
                                     </div>
                                     <div className="space-y-1">
-                                        <Label htmlFor="new">Birthday</Label>
-                                        <Input id="new" type="date" />
+                                        <Label htmlFor="registerBirthday">Birthday</Label>
+                                        <Input
+                                            id="registerBirthday"
+                                            type="date"
+                                            value={signUpBirthday}
+                                            onChange={handleSignUpBirthdayChange}
+                                        />
                                     </div>
                                 </CardContent>
                                 <CardFooter>
-                                    <Button>Sign up</Button>
+                                    <Button onClick={handleSignUp}>Sign up</Button>
                                 </CardFooter>
                             </Card>
                         </TabsContent>
@@ -107,4 +203,3 @@ function LoginAndRegister() {
 }
 
 export default LoginAndRegister;
-
