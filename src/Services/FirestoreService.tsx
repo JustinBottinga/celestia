@@ -12,22 +12,6 @@ import { db } from "../firebase";
 const uuid = localStorage.getItem("user_id");
 import { v4 as uuidv4 } from "uuid";
 
-// export const AddMessage = async (message: string, sender: string) => {
-//   const timeStamp = new Date();
-//   console.log(timeStamp);
-
-//   try {
-//     const ChatRef = doc(db, `${uuid}`, "Chats");
-//     const docSnapshot = await getDoc(ChatRef);
-//     const existingMessages = docSnapshot.data()?.Messages || [];
-//     existingMessages.push({ sender, message, timeStamp });
-
-//     await setDoc(ChatRef, { Messages: existingMessages }, { merge: true });
-//   } catch (e) {
-//     alert(e);
-//   }
-// };
-
 export const GetAllChats = async (userId: string) => {
   try {
     // Reference to the 'Chats' subcollection inside the user's document
