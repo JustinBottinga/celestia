@@ -53,7 +53,7 @@ function Chat(): JSX.Element {
     name: "",
   });
   const [wideInbox, setWideInbox] = useState(true);
-  const [loading, setLoading] = useState<boolean>(true); // State to track loading
+  // const [loading, setLoading] = useState<boolean>(true); // State to track loading
 
   const scrollToBottom = () => {
     if (chatRef.current) {

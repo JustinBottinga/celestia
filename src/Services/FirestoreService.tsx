@@ -116,3 +116,5 @@ export const AddMessage = async (
     alert(e);
   }
 };
+
+export const CreateUser = async () => {};

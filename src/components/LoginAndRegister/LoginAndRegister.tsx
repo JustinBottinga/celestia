@@ -22,6 +22,19 @@ enum FormType {
   SignUp = "signUp",
 }
 
+interface Signup {
+  Username: string;
+  Email: string;
+  Password: string;
+  DateOfBirth: Date;
+}
+
+interface Login {
+  Username?: string;
+  Email?: string;
+  Password: string;
+}
+
 function LoginAndRegister() {
   // State for Sign In inputs
   const [signInEmail, setSignInEmail] = useState("");
