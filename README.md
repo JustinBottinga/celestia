@@ -56,11 +56,10 @@ src/
 ```
 
 ## Technologies
-[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) 
-&nbsp;&nbsp;&nbsp; A JavaScript library for building user interfaces.
-* Shadcn: A collection of responsive and accessible components for modern web apps.
-* Tailwind CSS: A utility-first CSS framework for fast styling.
-* Gemini AI API: The backend AI service for generating responses.
+[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) * A JavaScript library for building user interfaces.
+[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000?logo=shadcnui&logoColor=fff)](#) * A collection of responsive and accessible components for modern web apps.
+[![TailwindCSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](#) * A utility-first CSS framework for fast styling.
+ [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff)](#) * The backend AI service for generating responses.
 * Vite: Lightning-fast development build system for React.
 
 ## API Integration
