@@ -56,7 +56,7 @@ src/
 ```
 
 ## Technologies
-[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) A JavaScript library for building user interfaces.
+[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](React.js) A JavaScript library for building user interfaces.
 
 [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000?logo=shadcnui&logoColor=fff)](#) A collection of responsive and accessible components for modern web apps
 
