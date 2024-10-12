@@ -39,13 +39,21 @@ This project is a **React** web application, built using **Shadcn UI components*
   </ol>
 </details>
 
-## Installation
+## Project stucture 
+```
+src/
+├── assets/            # Folder for static assets like images, fonts, etc.
+├── components/        # Folder for React components
+├── lib/               # Folder for utility or helper functions
+├── services/          # Folder for service files (e.g., API calls, Firebase integration)
+├── shared/            # Folder for shared components or utilities
+├── App.css            # Main CSS file for the App
+├── App.tsx            # Main React component (TypeScript)
+├── firebase.js        # Firebase configuration or logic
+├── index.css          # Global CSS file
+├── main.tsx           # Main entry point for the React app
+├── vite-env.d.ts      # TypeScript type declarations for Vite
+```
 
-To run the project locally, follow these steps:
 
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/your-username/ai-chatbot-webapp.git
-   cd ai-chatbot-webapp
-   ```
+   
