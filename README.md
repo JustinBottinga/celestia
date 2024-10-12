@@ -57,7 +57,6 @@ src/
 
 ## Technologies
 [![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) 
-
 &nbsp;&nbsp;&nbsp; A JavaScript library for building user interfaces.
 * Shadcn: A collection of responsive and accessible components for modern web apps.
 * Tailwind CSS: A utility-first CSS framework for fast styling.
