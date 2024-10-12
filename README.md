@@ -55,5 +55,11 @@ src/
 ├── vite-env.d.ts      # TypeScript type declarations for Vite
 ```
 
+## Technologies
+* React: A JavaScript library for building user interfaces.
+* Shadcn: A collection of responsive and accessible components for modern web apps.
+* Tailwind CSS: A utility-first CSS framework for fast styling.
+* Gemini AI API: The backend AI service for generating responses.
+* Vite: Lightning-fast development build system for React.
 
    
