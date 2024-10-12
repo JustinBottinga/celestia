@@ -67,9 +67,9 @@ src/
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff)](https://vite.dev) Lightning-fast development build system for React.
 
 ## API Integration
-This project utilizes the Gemini AI API [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff)](#) for generating conversational responses in the chatbot. Below is a sample of how the API is integrated:
+This project utilizes the Gemini AI API [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff)](https://ai.google.dev) for generating conversational responses in the chatbot. Below is a sample of how the API is integrated:
 
-This project also utilizes Firestore [![Firebase](https://img.shields.io/badge/Firebase-039BE5?logo=Firebase&logoColor=white)](#)
+This project also utilizes Firestore [![Firebase](https://img.shields.io/badge/Firebase-039BE5?logo=Firebase&logoColor=white)](https://firebase.google.com/docs/firestore)
  for storing user- and chat-data. below is a sample of how the API is being used:
 
 
