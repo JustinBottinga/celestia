@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 import "./LoginAndRegister.css";
@@ -16,90 +16,123 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tab";
+import { log } from "console";
+import { ISignIn, ISignUp } from "../../shared/types";
 
 enum FormType {
   SignIn = "signIn",
   SignUp = "signUp",
 }
 
-interface Signup {
-  Username: string;
-  Email: string;
-  Password: string;
-  DateOfBirth: Date;
-}
-
-interface Login {
-  Username?: string;
-  Email?: string;
-  Password: string;
-}
-
 function LoginAndRegister() {
-  // State for Sign In inputs
-  const [signInEmail, setSignInEmail] = useState("");
-  const [signInPassword, setSignInPassword] = useState("");
+  // Username regex: validates a username with at least 3 characters, allowing letters, numbers, dots, underscores, and hyphens.
+  const usernameRegex = /^[a-zA-Z0-9._-]{3,}$/;
 
-  // State for Sign Up inputs
-  const [signUpUsername, setSignUpUsername] = useState("");
-  const [signUpEmail, setSignUpEmail] = useState("");
-  const [signUpPassword, setSignUpPassword] = useState("");
-  const [signUpRepeatPassword, setSignUpRepeatPassword] = useState("");
-  const [signUpBirthday, setSignUpBirthday] = useState("");
+  // Email regex: validates a standard email format.
+  const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-  const handleSignIn = () => {
-    console.log("Sign In Credentials:");
-    console.log("Email/Username:", signInEmail);
-    console.log("Password:", signInPassword);
+  // Password regex: validates a password with at least 8 characters, requiring uppercase, lowercase, digit, and special character.
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  const [SignIn, setSignIn] = useState<ISignIn>({
+    Username: "",
+    Email: "",
+    Password: "",
+  });
+
+  const [SignUp, setSignUp] = useState<ISignUp>({
+    Username: "",
+    Email: "",
+    Password: "",
+    PasswordConfirm: "",
+    DateOfBirth: new Date(),
+  });
+
+  // const emailErrorRef = useRef();
+
+  const handleChangeSignin = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignIn({
+      ...SignIn,
+      [name]: value,
+    });
   };
 
-  const handleSignUp = () => {
-    console.log("Sign Up Credentials:");
-    console.log("Username:", signUpUsername);
-    console.log("Email:", signUpEmail);
-    console.log("Password:", signUpPassword);
-    console.log("Repeat Password:", signUpRepeatPassword);
-    console.log("Birthday:", signUpBirthday);
+  const handleChangeSignup = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignUp({
+      ...SignUp,
+      [name]: value,
+    });
   };
 
-  // Define event handlers with types
-  const handleSignInEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSignInEmail(e.target.value);
+  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (singInValidation(SignIn)) {
+      console.log("Form valid");
+    } else {
+      console.log("Form not valid");
+    }
+
+    console.log(SignIn);
   };
 
-  const handleSignInPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSignInPassword(e.target.value);
+  function singInValidation(signInFields: ISignIn): boolean {
+    if (
+      !usernameRegex.test(signInFields.Username) &&
+      !emailRegex.test(signInFields.Email)
+    ) {
+      return false;
+    }
+
+    if (!passwordRegex.test(signInFields.Password)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (signUpValidation(SignUp)) {
+      console.log("Form valid");
+    } else {
+      console.log("Form not valid");
+    }
+
+    console.log(SignUp);
   };
 
-  const handleSignUpUsernameChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSignUpUsername(e.target.value);
-  };
+  function signUpValidation(signUpFields: ISignUp): boolean {
+    if (!usernameRegex.test(signUpFields.Username)) {
+      return false;
+    }
 
-  const handleSignUpEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSignUpEmail(e.target.value);
-  };
+    if (!emailRegex.test(signUpFields.Email)) {
+      return false;
+    }
 
-  const handleSignUpPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSignUpPassword(e.target.value);
-  };
+    if (
+      !passwordRegex.test(signUpFields.Password) &&
+      !passwordRegex.test(signUpFields.PasswordConfirm)
+    ) {
+      return false;
+    }
 
-  const handleSignUpRepeatPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSignUpRepeatPassword(e.target.value);
-  };
+    if (signUpFields.Password !== signUpFields.PasswordConfirm) {
+      return false;
+    }
 
-  const handleSignUpBirthdayChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSignUpBirthday(e.target.value);
-  };
+    // if user is atleast 13;
+    const dob = new Date(signUpFields.DateOfBirth);
+    const today = new Date();
+    if (!(today.getFullYear() - dob.getFullYear() >= 13)) {
+      return false;
+    }
+
+    return true;
+  }
 
   return (
     <div className="bg-grid">
@@ -132,36 +165,52 @@ function LoginAndRegister() {
                     <br />
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="space-y-1">
-                    <Label htmlFor="loginEmailOrUsername">
-                      Email address or username
-                    </Label>
-                    <Input
-                      className="inputBox"
-                      id="loginEmailOrUsername"
-                      placeholder="Celestia@domain.com"
-                      value={signInEmail}
-                      onChange={handleSignInEmailChange}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="loginPassword">Password</Label>
-                    <Input
-                      className="inputBox"
-                      id="loginPassword"
-                      type="password"
-                      value={signInPassword}
-                      onChange={handleSignInPasswordChange}
-                    />
-                  </div>
-                  <Link to="#" className="text-gray-300 hover:text-white">
-                    Forgot password
-                  </Link>
+                <CardContent>
+                  <form
+                    className="flex flex-col gap-2"
+                    onSubmit={handleSignIn}
+                    method="post"
+                    autoComplete="on"
+                  >
+                    <div>
+                      <Label htmlFor="loginEmailOrUsername">
+                        Email address or username
+                      </Label>
+                      <Input
+                        className="inputBox"
+                        id="loginEmailOrUsername"
+                        placeholder="Celestia@domain.com"
+                        name="Email"
+                        value={SignIn.Email}
+                        onChange={handleChangeSignin}
+                      />
+                      {/* 
+                      <div ref={emailErrorRef} className="text-red-800 text-sm">
+                        Invalid email or username
+                      </div>*/}
+                    </div>
+                    <div>
+                      <Label htmlFor="loginPassword">Password</Label>
+                      <Input
+                        className="inputBox"
+                        id="loginPassword"
+                        type="password"
+                        name="Password"
+                        onChange={handleChangeSignin}
+                      />
+                    </div>
+                    <Link to="#" className="text-gray-300 hover:text-white">
+                      Forgot password
+                    </Link>
+
+                    <button
+                      role="submit"
+                      className="bg-purple-800 p-2 px-4 rounded-md w-fit"
+                    >
+                      Sign in
+                    </button>
+                  </form>
                 </CardContent>
-                <CardFooter>
-                  <Button onClick={handleSignIn}>Sign in</Button>
-                </CardFooter>
               </Card>
             </TabsContent>
 
@@ -175,58 +224,60 @@ function LoginAndRegister() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className="space-y-1">
-                    <Label htmlFor="registerUsername">Username</Label>
-                    <Input
-                      className="inputBox"
-                      id="registerUsername"
-                      value={signUpUsername}
-                      onChange={handleSignUpUsernameChange}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="registerEmail">Email address</Label>
-                    <Input
-                      className="inputBox"
-                      id="registerEmail"
-                      type="email"
-                      placeholder="Celestia@domain.com"
-                      value={signUpEmail}
-                      onChange={handleSignUpEmailChange}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="registerPassword">Password</Label>
-                    <Input
-                      className="inputBox"
-                      id="registerPassword"
-                      type="password"
-                      value={signUpPassword}
-                      onChange={handleSignUpPasswordChange}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="registerRepeatPassword">
-                      Repeat password
-                    </Label>
-                    <Input
-                      className="inputBox"
-                      id="registerRepeatPassword"
-                      type="password"
-                      value={signUpRepeatPassword}
-                      onChange={handleSignUpRepeatPasswordChange}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="registerBirthday">Birthday</Label>
-                    <Input
-                      className="inputBox"
-                      id="registerBirthday"
-                      type="date"
-                      value={signUpBirthday}
-                      onChange={handleSignUpBirthdayChange}
-                    />
-                  </div>
+                  <form onSubmit={handleSignUp} method="post">
+                    <div className="space-y-1">
+                      <Label htmlFor="registerUsername">Username</Label>
+                      <Input
+                        className="inputBox"
+                        id="registerUsername"
+                        name="Username"
+                        onChange={handleChangeSignup}
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="registerEmail">Email address</Label>
+                      <Input
+                        className="inputBox"
+                        id="registerEmail"
+                        type="email"
+                        name="Email"
+                        placeholder="Celestia@domain.com"
+                        onChange={handleChangeSignup}
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="registerPassword">Password</Label>
+                      <Input
+                        className="inputBox"
+                        id="registerPassword"
+                        type="password"
+                        name="Password"
+                        onChange={handleChangeSignup}
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="registerRepeatPassword">
+                        Repeat password
+                      </Label>
+                      <Input
+                        className="inputBox"
+                        id="registerRepeatPassword"
+                        type="password"
+                        name="PasswordConfirm"
+                        onChange={handleChangeSignup}
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="registerBirthday">Birthday</Label>
+                      <Input
+                        className="inputBox"
+                        id="registerBirthday"
+                        type="date"
+                        name="DateOfBirth"
+                        onChange={handleChangeSignup}
+                      />
+                    </div>
+                  </form>
                 </CardContent>
                 <CardFooter>
                   <Button onClick={handleSignUp}>Sign up</Button>

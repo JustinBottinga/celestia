@@ -24,31 +24,21 @@ import {
 } from "../../services/FirestoreService";
 
 import { Button } from "../ui/button";
-
-interface Chat {
-  chatId: string;
-  messages: { message: string; sender: string }[];
-  title: string;
-}
-
-interface Message {
-  message: string;
-  sender: string;
-}
+import { IMessage, IChat } from "../../shared/types";
 
 function Chat(): JSX.Element {
   const uuid = localStorage.getItem("user_id")?.toString();
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
 
-  const [currentChat, setCurrentChat] = useState<Chat>({
+  const [currentChat, setCurrentChat] = useState<IChat>({
     chatId: "",
     messages: [],
     title: "New chat!",
   });
-  const [chats, setChats] = useState<Chat[]>([]); // State to store chats
+  const [chats, setChats] = useState<IChat[]>([]); // State to store chats
   const [chatLength, setChatLength] = useState<number>(0); // Initialize chat length
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<IMessage[]>([]);
   const [formData, setFormData] = useState({
     name: "",
   });
@@ -147,7 +137,7 @@ function Chat(): JSX.Element {
     try {
       const newChatId = await CreateChat(`${uuid}`, "New chat!");
 
-      const newChat: Chat = {
+      const newChat: IChat = {
         chatId: newChatId!,
         title: "New chat!",
         messages: [],
@@ -162,7 +152,7 @@ function Chat(): JSX.Element {
     }
   }
 
-  function VisitChat(chatObj: Chat) {
+  function VisitChat(chatObj: IChat) {
     setCurrentChat(chatObj);
     setMessages(chatObj.messages);
   }
@@ -246,7 +236,7 @@ function Chat(): JSX.Element {
               {/* Middle section */}
               <div className="flex flex-col w-full flex-grow py-2 gap-2 ">
                 {chatLength > 0 &&
-                  chats.map((chat: Chat) => (
+                  chats.map((chat: IChat) => (
                     <div
                       key={chat.chatId}
                       onClick={() => VisitChat(chat)}
