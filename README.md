@@ -1,113 +1,199 @@
-# AI Chatbot Web App
-This project is a React web application, built using Shadcn UI components and styled with Tailwind CSS, that integrates with the Gemini AI API to provide a smooth chatbot experience. The goal of this project was to create an interactive, responsive, and modern AI-powered chatbot that users can communicate with easily.
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a id="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-## Features
-* AI-powered Chatbot: Powered by the Gemini AI API, offering intelligent and conversational responses.
-* Modern UI: Built with Shadcn UI components for a clean and sleek design.
-* Responsive Design: Tailwind CSS is used for fast and responsive styling.
-* Real-time Communication: Dynamic chat interface with real-time updates.
 
-Table of Contents
-Installation
-Usage
-Project Structure
-Technologies
-API Integration
-Contributing
-License
-Installation
-To run the project locally, follow these steps:
 
-Clone the repository:
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-bash
-Copy code
-git clone https://github.com/your-username/ai-chatbot-webapp.git
-cd ai-chatbot-webapp
-Install the dependencies:
 
-Make sure you have npm or yarn installed.
 
-bash
-Copy code
-npm install
-# or
-yarn install
-Set up environment variables:
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/github_username/repo_name">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-Create a .env file in the root of the project and add your Gemini AI API key:
+<h3 align="center">project_title</h3>
 
-env
-Copy code
-REACT_APP_GEMINI_API_KEY=your-api-key
-Run the development server:
+  <p align="center">
+    project_description
+    <br />
+    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    ·
+    <a href="https://github.com/github_username/repo_name/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/github_username/repo_name/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
 
-bash
-Copy code
-npm start
-# or
-yarn start
-The app should now be running at http://localhost:3000.
 
-Usage
-Once the app is running, you can interact with the AI chatbot on the main screen. Simply type a message in the input box, and the chatbot will respond in real time. The application leverages the Gemini AI API to handle the natural language processing and generate responses.
 
-Key Interactions:
-Type your message in the chat input field.
-Click the "Send" button or press "Enter" to submit.
-The chatbot will respond immediately, providing conversational responses based on the AI model.
-Project Structure
-bash
-Copy code
-├── public/              # Public assets and files
-├── src/
-│   ├── components/      # React components (e.g., chat UI, buttons)
-│   ├── pages/           # Main pages (e.g., ChatPage, HomePage)
-│   ├── services/        # API service logic (e.g., Gemini API calls)
-│   ├── styles/          # Tailwind CSS styles
-│   ├── App.js           # Main React App component
-│   └── index.js         # Entry point of the application
-├── .env                 # Environment variables (e.g., API keys)
-├── package.json         # Project metadata and dependencies
-└── README.md            # Project documentation
-Technologies
-React: A JavaScript library for building user interfaces.
-Shadcn: A collection of responsive and accessible components for modern web apps.
-Tailwind CSS: A utility-first CSS framework for fast styling.
-Gemini AI API: The backend AI service for generating responses.
-Vite: Lightning-fast development build system for React.
-API Integration
-This project utilizes the Gemini AI API for generating conversational responses in the chatbot. Below is a sample of how the API is integrated:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-javascript
-Copy code
-import axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-const BASE_URL = 'https://api.gemini-ai.com/chat';
 
-export const getAIResponse = async (message) => {
-  try {
-    const response = await axios.post(
-      BASE_URL,
-      { message },
-      { headers: { Authorization: `Bearer ${API_KEY}` } }
-    );
-    return response.data.reply;
-  } catch (error) {
-    console.error("Error getting response from AI:", error);
-    return "Sorry, I couldn't process that. Please try again.";
-  }
-};
-Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page to see what’s currently open.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-To contribute:
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Fork the project
-Create your feature branch (git checkout -b feature/some-feature)
-Commit your changes (git commit -m 'Add some feature')
-Push to the branch (git push origin feature/some-feature)
-Open a pull request
-License
-This project is licensed under the MIT License.
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+### Built With
+
+* [![Next][Next.js]][Next-url]
+* [![React][React.js]][React-url]
+* [![Vue][Vue.js]][Vue-url]
+* [![Angular][Angular.io]][Angular-url]
+* [![Svelte][Svelte.dev]][Svelte-url]
+* [![Laravel][Laravel.com]][Laravel-url]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![JQuery][JQuery.com]][JQuery-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```js
+   const API_KEY = 'ENTER YOUR API';
+   ```
+5. Change git remote url to avoid accidental pushes to base project
+   ```sh
+   git remote set-url origin github_username/repo_name
+   git remote -v # confirm the changes
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Feature 1
+- [ ] Feature 2
+- [ ] Feature 3
+    - [ ] Nested Feature
+
+See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Top contributors:
+
+<a href="https://github.com/github_username/repo_name/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=github_username/repo_name" alt="contrib.rocks image" />
+</a>
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
