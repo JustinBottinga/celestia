@@ -56,7 +56,7 @@ src/
 ```
 
 ## Technologies
-* 	[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) - React: A JavaScript library for building user interfaces.
+[![React](https://img.shields.io/badge/React-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) - A JavaScript library for building user interfaces.
 * Shadcn: A collection of responsive and accessible components for modern web apps.
 * Tailwind CSS: A utility-first CSS framework for fast styling.
 * Gemini AI API: The backend AI service for generating responses.
