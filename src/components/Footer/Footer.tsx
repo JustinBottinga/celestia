@@ -4,7 +4,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <>
-      <footer className="border-t border-solid border-gray-100/5 text-white py-6">
+      <footer className="border-t border-solid border-gray-100/5 text-white py-6 bg-[var(--background)]">
         <div className="container mx-auto flex justify-between items-center p-5">
           <div>
             <h2 className="text-lg font-semibold font-serif">Celestia</h2>
