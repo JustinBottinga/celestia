@@ -1,17 +1,21 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBfrAvP0hMatGngQPQS3cxSAJCK1G3p5f0",
-  authDomain: "celestia-app-fcbe3.firebaseapp.com",
-  projectId: "celestia-app-fcbe3",
-  storageBucket: "celestia-app-fcbe3.appspot.com",
-  messagingSenderId: "224457548194",
-  appId: "1:224457548194:web:956f8c1ccfccba164852fb",
-  measurementId: "G-D5Y8MLPPKH"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 // Export firestore database
 // It will be imported into your react app whenever it is needed
-export const db = getFirestore(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+export { db, storage };

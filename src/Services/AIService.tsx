@@ -1,10 +1,12 @@
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+//import { GoogleAIFileManager } from "@google/generative-ai/server";
 
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_AI_API_KEY);
+//const fileManager = new GoogleAIFileManager(import.meta.env.VITE_AI_API_KEY); KAN NIET GEBRUIKT WORDEN OMDAT DIT VOOR SERVER SIDE IS (VITE IS DIESIGNED TO RUN IN THE BROWSER, CLIENT SIDED)
 
 const conversationHistory: string[] = [];
 
-export const getAIResponse = async (prompt: string) => {
+export const getAIResponse = async (prompt: string, imageUrl?: string) => {
     try {
         const safetySettings = [
             {
@@ -38,6 +40,8 @@ export const getAIResponse = async (prompt: string) => {
         \nCelestia: Hello, how are you?
         \n${conversationHistory.join("\n")}
         \n
+        \nUser has uploaded an image: ${imageUrl ? `Yes, here is the link: ${imageUrl}` : 'No image uploaded'}
+        \nIf an image was provided, describe it and reference it in your response.
         \nUser input: ${prompt}
         `;
 
@@ -49,6 +53,7 @@ export const getAIResponse = async (prompt: string) => {
         conversationHistory.push(`User: ${prompt}`);
 
         return result.response.text();  // Return the AI-generated text
+
     } catch (error) {
         console.error("Error fetching AI response:", error);
         return "Sorry, something went wrong with the AI service.";

@@ -23,6 +23,8 @@ import {
   GetAllChats,
 } from "../../services/FirestoreService";
 
+import { uploadImage } from "../../Services/StorageService";
+
 import { Button } from "../ui/button";
 
 interface Chat {
@@ -40,6 +42,7 @@ function Chat(): JSX.Element {
   const uuid = localStorage.getItem("user_id")?.toString();
   const chatEndRef = useRef<HTMLDivElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLInputElement | null>(null);
 
   const [currentChat, setCurrentChat] = useState<Chat>({
     chatId: "",
@@ -54,6 +57,8 @@ function Chat(): JSX.Element {
   });
   const [wideInbox, setWideInbox] = useState(true);
   const [loading, setLoading] = useState<boolean>(true); // State to track loading
+
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const scrollToBottom = () => {
     if (chatRef.current) {
@@ -114,19 +119,46 @@ function Chat(): JSX.Element {
               { message: formData.name, sender: "Me" },
             ]);
 
-            const aiResponse = await getAIResponse(formData.name);
+            if (imageFile) {
+              console.log("Selected image file:", imageFile);
+              // Here you can implement the logic to upload the image and get the URL.
+              const imageUrl = await uploadImage(imageFile); // Implement this function
+              // Send the image URL to the AI or store it
+              await AddMessage(`${uuid}`, currentChat.chatId, imageUrl, "Me");
+              setMessages((prevMessages) => [
+                ...prevMessages,
+                { message: `Image sent: ${imageUrl}`, sender: "Me" },
+              ]);
 
-            await AddMessage(
-              `${uuid}`,
-              currentChat.chatId,
-              aiResponse,
-              "Celestia"
-            );
+              const aiResponse = await getAIResponse(formData.name, imageUrl);
 
-            setMessages((prevMessages) => [
-              ...prevMessages,
-              { message: aiResponse, sender: "Celestia" },
-            ]);
+              await AddMessage(
+                `${uuid}`,
+                currentChat.chatId,
+                aiResponse,
+                "Celestia"
+              );
+
+              setMessages((prevMessages) => [
+                ...prevMessages,
+                { message: aiResponse, sender: "Celestia" },
+              ]);
+            } else {
+
+              const aiResponse = await getAIResponse(formData.name);
+
+              await AddMessage(
+                `${uuid}`,
+                currentChat.chatId,
+                aiResponse,
+                "Celestia"
+              );
+
+              setMessages((prevMessages) => [
+                ...prevMessages,
+                { message: aiResponse, sender: "Celestia" },
+              ]);
+            }
           } catch (error) {
             console.error("Error adding message:", error);
           }
@@ -141,6 +173,11 @@ function Chat(): JSX.Element {
     setFormData({
       name: "",
     });
+    setImageFile(null);
+
+    if (imageRef.current) {
+      imageRef.current.value = "";
+    }
   };
 
   async function StartChat(): Promise<void> {
@@ -334,6 +371,13 @@ function Chat(): JSX.Element {
                     placeholder="Say 'Hello'"
                     onChange={handleChange}
                     className="h-min w-full bg-opacity-20 bg-purple-200 p-2 px-3 text-purple-50 outline-none focus:caret-purple-50/50 hover:cursor-text"
+                  />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    ref={imageRef}
+                    onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                    className="bg-opacity-20 bg-purple-200 p-2 text-purple-50 outline-none"
                   />
                   <button
                     className="bg-purple-100/40 p-2 px-3 rounded-br-xl hover:bg-purple-100/10 cursor-pointer transition-all"
